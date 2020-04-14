@@ -166,7 +166,7 @@
        $('#downloadPDF').click(function () {
        domtoimage.toPng(document.getElementById('poster-container'))
            .then(function (blob) {
-               var pdf = new jsPDF('pt', [$('#poster-container').width(), $('#poster-container').height()]);
+               var pdf = new jsPDF('p','pt', [$('#poster-container').width(), $('#poster-container').height()]);
    
                pdf.addImage(blob, 'PNG', 0, 0, $('#poster-container').width(), $('#poster-container').height());
                pdf.save("covid-poster.pdf");
