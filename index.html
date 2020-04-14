@@ -101,17 +101,12 @@
   <!-- POSTER -->
 <div  id="main-container">
 
-  <div id="poster-wrapper">
   <div id="poster-container">
       <h1>Keep your distance.</h1>
       <h3>6ft = 1 <span id="obj-name">Alligator</span> apart</h3>
       <img id="person-left" class="pic person" src="img/woman_silh_1.png"/>
       <img id="person-right" class="pic person" src="img/woman_silh_2.png"/>
-    <!--  <div class="pic person person-left" style="background-image: url(http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA);"></div>-->
-      <!-- <img id="person-b" class="pic person person-right" src="http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA"> -->
-     <!-- <div id="measure-object" class="pic" style="background-image: url(http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA);"></div> -->
   </div>
-</div>
 
 
   <!-- FORM -->
@@ -171,10 +166,10 @@
        $('#downloadPDF').click(function () {
        domtoimage.toPng(document.getElementById('poster-container'))
            .then(function (blob) {
-               var pdf = new jsPDF('l', 'pt', [$('#poster-container').width(), $('#poster-container').height()]);
+               var pdf = new jsPDF('pt', [$('#poster-container').width(), $('#poster-container').height()]);
    
                pdf.addImage(blob, 'PNG', 0, 0, $('#poster-container').width(), $('#poster-container').height());
-               pdf.save("test.pdf");
+               pdf.save("covid-poster.pdf");
    
                that.options.api.optionsChanged();
            });
