@@ -1,0 +1,191 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+    integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+      
+      <style>
+        #main-container {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          padding-left: 50px;
+          padding-right: 50px;
+          align-items: center;
+          justify-content: space-evenly;
+        }
+         #poster-container {
+            margin: auto;
+            margin-top: 30px;
+            width: 540px;
+            height: 700px;
+            background:white;
+            border: 1px solid black;
+            box-shadow: 3px 8px 10px rgb(167, 167, 167);
+            padding: 40px;
+         }
+         
+         #downloadPDF {
+           margin: auto;
+           margin-top: 30px;
+         }
+
+         #form {
+           width: 350px;
+           padding: 20px;
+           padding-left: 0px;
+           margin-right: 50px;
+         }
+
+         select {
+            padding: 10px;
+            width: 150px;
+            height: 30px;
+            background-color: white;
+            box-shadow: 1px 3px 3px rgb(167, 167, 167);
+         }
+
+         .pic {
+           position: relative;
+         }
+
+         .person {
+           top: 150px;
+          width: 20%;
+          height: 50%;
+          background-size: contain;
+          background-repeat: no-repeat;
+         }
+
+         .person-right {
+           left: 62%;
+         }
+
+         .person-left {
+           left: 2%;
+         }
+
+         h1 {
+           margin-top: 50px;
+         }
+
+         h3 {
+           color: gray;
+         }
+         
+         img {
+           background: rgb(0,0,0,0);
+         }
+         
+   </style>
+   <link href="css/bootstrap.css" rel="stylesheet">
+   </head>
+ 
+<body>
+
+  <!-- POSTER -->
+<div  id="main-container">
+  <div id="poster-container">
+      <h1>Keep your distance.</h1>
+      <h3>6ft = 1 <span id="obj-name">Alligator</span> apart</h3>
+      <img class="pic person person-left" src="http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA" />
+    <!--  <div class="pic person person-left" style="background-image: url(http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA);"></div>-->
+      <!-- <img id="person-b" class="pic person person-right" src="http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA"> -->
+     <!-- <div id="measure-object" class="pic" style="background-image: url(http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA);"></div> -->
+  </div>
+
+
+  <!-- FORM -->
+  <div id="form">
+    <form>
+       <div class="form-group">
+         
+         <label>Background Color</label><br>
+         <select id="background-color-select">
+           <option value="white" selected="selected">White</option>
+           <option value="lightblue" >Blue</option>
+           <option value="lightgrey">Gray</option>
+           <option value="lightpink">Pink</option>
+           <option value="lightyellow">Yellow</option>
+         </select>
+         </div>
+     
+         <div class="form-group">
+         <label>Left Person</label><br>
+         <select id="left-person-select">
+           <option value="1" selected="selected">Female 1</option>
+           <option value="2">Female 2</option>
+           <option value="3">Male 1</option>
+           <option value="4">Male 2</option>
+         </select>
+       </div>
+     
+       <div class="form-group">
+         <label>Right Person</label><br>
+         <select id="right-person-select">
+           <option value="1">Female 1</option>
+           <option value="2">Female 2</option>
+           <option value="3" selected="selected">Male 1</option>
+           <option value="4">Male 2</option>
+         </select>
+       </div>
+     
+       <div class="form-group">
+         <label>Object</label><br>
+         <select id="object-select">
+           <option value="Alligator" selected="selected">Alligator</option>
+           <option value="Bed">Bed</option>
+           <option value="Fridge">Fridge</option>
+         </select>
+         </div>
+         
+       <div class="form-group">
+        
+       </div>
+       
+     </form>
+     <button class="btn btn-lg btn-info" id="downloadPDF">Download PDF</button>
+     </div>
+     </div>
+   
+   <script>
+       $('#downloadPDF').click(function () {
+       domtoimage.toPng(document.getElementById('poster-container'))
+           .then(function (blob) {
+               var pdf = new jsPDF('l', 'pt', [$('#poster-container').width(), $('#poster-container').height()]);
+   
+               pdf.addImage(blob, 'PNG', 0, 0, $('#poster-container').width(), $('#poster-container').height());
+               pdf.save("test.pdf");
+   
+               that.options.api.optionsChanged();
+           });
+   });
+
+$(function() {
+    $('#left-person-select').on('change', function(event) {
+        document.getElementById(event.target.id).src = this.value
+    });
+
+    $('#background-color-select').on('change', function(event) {
+        document.getElementById("poster-container").style.background = this.value
+    });
+
+    $('#object-select').on('change', function(event) {
+        document.getElementById("obj-name").textContent = this.value
+    });
+    
+});
+
+
+</script>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
