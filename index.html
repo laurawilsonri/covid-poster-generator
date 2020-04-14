@@ -61,18 +61,18 @@
 
          .person {
            top: 150px;
-          width: 20%;
+          width: 21%;
           height: 50%;
           background-size: contain;
           background-repeat: no-repeat;
          }
 
-         .person-right {
-           left: 62%;
+         #person-right {
+           left: 56%;
          }
 
-         .person-left {
-           left: 2%;
+         #person-left {
+           left: 0%;
          }
 
          h1 {
@@ -86,6 +86,11 @@
          img {
            background: rgb(0,0,0,0);
          }
+
+         #poster-wrapper {
+          width: 540px;
+          height: 720px;
+         }
          
    </style>
    <link href="css/bootstrap.css" rel="stylesheet">
@@ -95,14 +100,18 @@
 
   <!-- POSTER -->
 <div  id="main-container">
+
+  <div id="poster-wrapper">
   <div id="poster-container">
       <h1>Keep your distance.</h1>
       <h3>6ft = 1 <span id="obj-name">Alligator</span> apart</h3>
-      <img class="pic person person-left" src="img/woman_silh_1.png" />
+      <img id="person-left" class="pic person" src="img/woman_silh_1.png"/>
+      <img id="person-right" class="pic person" src="img/woman_silh_2.png"/>
     <!--  <div class="pic person person-left" style="background-image: url(http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA);"></div>-->
       <!-- <img id="person-b" class="pic person person-right" src="http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA"> -->
      <!-- <div id="measure-object" class="pic" style="background-image: url(http://drive.google.com/uc?export=view&id=1it2z-IPcP7gwHBP8kDQvHPIwaH6HqQVA);"></div> -->
   </div>
+</div>
 
 
   <!-- FORM -->
@@ -123,20 +132,20 @@
          <div class="form-group">
          <label>Left Person</label><br>
          <select id="left-person-select">
-           <option value="1" selected="selected">Female 1</option>
-           <option value="2">Female 2</option>
-           <option value="3">Male 1</option>
-           <option value="4">Male 2</option>
+           <option value="img/woman_silh_1.png" selected="selected">Female 1</option>
+           <option value="img/woman_silh_2.png">Female 2</option>
+           <option value="img/man_silh_1.png">Male 1</option>
+           <option value="img/man_silh_2.png">Male 2</option>
          </select>
        </div>
      
        <div class="form-group">
          <label>Right Person</label><br>
          <select id="right-person-select">
-           <option value="1">Female 1</option>
-           <option value="2">Female 2</option>
-           <option value="3" selected="selected">Male 1</option>
-           <option value="4">Male 2</option>
+           <option value="img/woman_silh_1.png">Female 1</option>
+           <option value="img/woman_silh_2.png">Female 2</option>
+           <option value="img/man_silh_1.png" selected="selected">Male 1</option>
+           <option value="img/man_silh_2.png">Male 2</option>
          </select>
        </div>
      
@@ -173,7 +182,11 @@
 
 $(function() {
     $('#left-person-select').on('change', function(event) {
-        document.getElementById(event.target.id).src = this.value
+        document.getElementById("person-left").src = this.value
+    });
+
+    $('#right-person-select').on('change', function(event) {
+        document.getElementById("person-right").src = this.value
     });
 
     $('#background-color-select').on('change', function(event) {
