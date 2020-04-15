@@ -42,7 +42,7 @@
          #form {
            width: 350px;
            padding: 20px;
-           padding-left: 0px;
+           padding-left: 20px;
            margin-right: 50px;
          }
 
@@ -59,9 +59,9 @@
          }
 
          .person {
-           top: 150px;
+           top: 300px;
           width: 21%;
-          height: 50%;
+          height: 45%;
           background-size: contain;
           background-repeat: no-repeat;
          }
@@ -75,11 +75,14 @@
          }
 
          h1 {
-           margin-top: 50px;
+          top: 100px;
+           position: absolute;
          }
 
          h3 {
            color: gray;
+            position: absolute;
+            top: 160px;
          }
          
          img {
@@ -90,6 +93,13 @@
           margin:auto;
           width: 540px;
           height: 700px;
+         }
+
+         #object {
+           top: 12%;
+           height: auto;
+           left: 21%;
+           width: 60%;
          }
          
    </style>
@@ -104,9 +114,10 @@
   <div id="poster-wrapper">
   <div id="poster-container">
       <h1>Keep your distance.</h1>
-      <h3>6ft = 1 <span id="obj-name">Alligator</span> apart</h3>
+      <h3>6ft = <span id="obj-name">1 Alligator</span> apart</h3>
        <img id="person-left" class="pic person" src="img/woman_silh_1.png"/>
       <img id="person-right" class="pic person" src="img/woman_silh_2.png"/>
+      <img id="object" class="pic" src="img/bicycle.png"/>
   </div>
 </div>
 
@@ -120,9 +131,11 @@
          <select id="background-color-select">
            <option value="white" selected="selected">White</option>
            <option value="lightblue" >Blue</option>
-           <option value="lightgrey">Gray</option>
-           <option value="lightpink">Pink</option>
+           <option value="lavender">Purple</option>
+           <option value="#ffd296">Orange</option>
            <option value="lightyellow">Yellow</option>
+           <option value="lightpink">Pink</option>
+           <option value="lightgrey">Gray</option>
          </select>
          </div>
      
@@ -149,9 +162,14 @@
        <div class="form-group">
          <label>Object</label><br>
          <select id="object-select">
-           <option value="Alligator" selected="selected">Alligator</option>
-           <option value="Bed">Bed</option>
-           <option value="Fridge">Fridge</option>
+          <option value='{"name": "1 Bicycle", "src": "img/bicycle.png", "top": "12%"}' selected="selected">Bicycle</option>
+           <option value='{"name": "1 Alligator", "src": "img/crocodile.png", "top": "25%"}' >Alligator</option>
+           <option value='{"name": "3 Corgis", "src": "img/corgis.png", "top": "12%"}'>Corgis</option>
+           <option value='{"name": "1 Eagle Wingspan", "src": "img/eagle.png", "top": "-15%"}'>Eagle</option>
+           <option value='{"name": "8 Eggo Waffle Boxes", "src": "img/waffle.png", "top": "9%"}'>Eggo Waffles</option>
+           <option value='{"name": "1 Twin Bed", "src": "img/bed.png", "top": "12%"}'>Twin Bed</option>
+           <option value='{"name": "1 Refigerator", "src": "img/fridge.png", "top": "12%"}'>Refigerator</option>
+           <option value='{"name": "8 Nintendo Switches", "src": "img/switch.png", "top": "12%"}'>Nintendo Switches</option>
          </select>
          </div>
          
@@ -191,7 +209,12 @@ $(function() {
     });
 
     $('#object-select').on('change', function(event) {
-        document.getElementById("obj-name").textContent = this.value
+        val = JSON.parse(this.value)
+        console.log(val)
+        document.getElementById("obj-name").textContent = val.name
+        document.getElementById("object").src = val.src
+        document.getElementById("object").style.top = val.top
+
     });
     
 });
