@@ -6,17 +6,18 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
-    integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+          integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
+      <script src="js/jquery.js"></script>
+      <script src="js/bootstrap.js"></script>
 
       
       <style>
         #main-container {
           width: 100%;
+          margin-top: 30px;
           display: flex;
           flex-direction: row;
           padding-left: 50px;
@@ -25,8 +26,6 @@
           justify-content: space-evenly;
         }
          #poster-container {
-            margin: auto;
-            margin-top: 30px;
             width: 540px;
             height: 700px;
             background:white;
@@ -88,8 +87,9 @@
          }
 
          #poster-wrapper {
+          margin:auto;
           width: 540px;
-          height: 720px;
+          height: 700px;
          }
          
    </style>
@@ -101,12 +101,14 @@
   <!-- POSTER -->
 <div  id="main-container">
 
+  <div id="poster-wrapper">
   <div id="poster-container">
       <h1>Keep your distance.</h1>
       <h3>6ft = 1 <span id="obj-name">Alligator</span> apart</h3>
-      <img id="person-left" class="pic person" src="img/woman_silh_1.png"/>
+       <img id="person-left" class="pic person" src="img/woman_silh_1.png"/>
       <img id="person-right" class="pic person" src="img/woman_silh_2.png"/>
   </div>
+</div>
 
 
   <!-- FORM -->
